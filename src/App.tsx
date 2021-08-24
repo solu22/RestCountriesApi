@@ -1,20 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
-import useCountry from './custom-hook/useCountry'
 
-import { Country } from './types'
+import TablePage from "./Components/Datatable"
+
+
+
 
 
 
 const App = () => {
-  const [countries, error] = useCountry()
 
-  if(! countries) return <p>loading</p>
-  return (
+return (
     <>
-      {countries.map((country:Country)=>(
-        <p key = {country.name}>{country.name}</p>
-      ))}
+
+
+   <h1>hello</h1>
+   <TablePage />
+   
       
     </>
   )

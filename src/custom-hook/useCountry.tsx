@@ -11,8 +11,10 @@ const useCountry = ()=> {
        axios.get(baseURL)
        .then(res => setCountries(res.data))
        .catch(err => setError(err))
+       console.log(countries);
        
-    }, [])
+       
+    }, [baseURL])
 
     return [countries, error]
 
