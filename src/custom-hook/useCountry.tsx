@@ -14,7 +14,7 @@ const useCountry = ()=> {
        console.log(countries);
        
        
-    }, [baseURL])
+    }, [countries])
 
     return [countries, error]
 

@@ -1,8 +1,14 @@
 export type Country ={
+    [index: string]:number | string | Array<string|number>|Object
     name: string
-    countries: Country[]
     flag: string
     region: string
-    languages: []
+    languages: Languages[]
     population: number
+    
+}
+
+export type Languages ={
+    name: string,
+    nativeName: string
 }

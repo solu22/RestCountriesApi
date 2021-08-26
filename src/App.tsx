@@ -1,26 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import TablePage from "./Components/Datatable"
-
-
-
-
-
+import HomePage from './Pages/HomePage'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import SingleCountryPage from './Pages/SingleCountryPage'
 
 const App = () => {
 
-return (
-    <>
+  return (
+    <Router>
+      <Switch>
+        <Route exact path = "/" component = {HomePage}></Route>
+        <Route exact path = "/:countryName" component = {SingleCountryPage}></Route>
+      </Switch>
+    </Router>
+     
 
-
-   <h1>hello</h1>
-   <TablePage />
-   
-      
-    </>
   )
 }
 
 export default App
+
+
+
+
+
 
 
