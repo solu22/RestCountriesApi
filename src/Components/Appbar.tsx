@@ -12,6 +12,7 @@ import { AppState } from '../Redux/Reducers';
 import PublicSharpIcon from '@material-ui/icons/PublicSharp';
 import Themes from '../Theme/Theme';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -85,14 +86,8 @@ const Appbar = ({ search, onChange }: any) => {
         <AppBar position="static">
           <Toolbar>
             <Grid container direction="row">
-              <Grid item >
-                <Button onClick={() => history.push('/')}>
-                  <PublicSharpIcon />
-                </Button>
-
-              </Grid>
               <Grid >
-                Countries API
+               <Link to ="/" style= {{textDecoration : 'none', color:'black', fontFamily:'Rampart One, cursive', fontSize: '20px'}}>countries API</Link>
               </Grid>
             </Grid>
               <div className={classes.search}>
