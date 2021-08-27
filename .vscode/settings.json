@@ -1,7 +1,9 @@
 {
     "cSpell.words": [
         "Appbar",
-        "Datatable"
+        "Datatable",
+        "Itemsfrom",
+        "middlewares"
     ],
     "files.autoSave": "onFocusChange",
     "editor.codeActionsOnSave": {

@@ -1,17 +1,26 @@
 
-// import { createStore, applyMiddleware } from "redux"
-// import rootReducer from './Reducers/index'
-// import thunk from 'redux-thunk'
-// import { composeWithDevTools } from "redux-devtools-extension"
+import { createStore, applyMiddleware } from "redux"
+import { composeWithDevTools } from "redux-devtools-extension"
+import rootReducer, { AppState } from './Reducers/index'
+import thunk from 'redux-thunk'
 
-// const storeInitialState = {
 
-// }
+const storeInitialState: AppState = {
+    countryReducer:{
+     countries: [],
+     isLoading: false,
+     error: ''
+    },
 
-// const middlewares = [thunk]
+    cartReducer: {
+        cart: [],
+    }
+}
 
-// export const store = createStore(
-//     composeWithDevTools(applyMiddleware(...middlewares))
-// )
+const middlewares = [thunk]
 
-export {}
+const store = createStore(
+    rootReducer, storeInitialState, composeWithDevTools(applyMiddleware(...middlewares))
+)
+
+export default store

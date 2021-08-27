@@ -9,8 +9,8 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path = "/" component = {HomePage}></Route>
-        <Route exact path = "/:countryName" component = {SingleCountryPage}></Route>
+        <Route exact path = "/" component = {HomePage}/>
+        <Route exact path = "/:countryName" component = {SingleCountryPage} />
       </Switch>
     </Router>
      

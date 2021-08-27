@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import { createStyles, alpha, makeStyles, Theme} from '@material-ui/core/styles';
+import { createStyles, alpha, makeStyles, Theme } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import Themes from '../Context/Theme';
-
-
+import { Badge, Button, Drawer, Grid } from '@material-ui/core';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import ItemLists from './ItemLists';
+import { useSelector } from 'react-redux';
+import { AppState } from '../Redux/Reducers';
+import PublicSharpIcon from '@material-ui/icons/PublicSharp';
+import Themes from '../Theme/Theme';
+import { useHistory } from 'react-router';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -63,43 +67,59 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
   }),
-);
+)
 
 
 
 
-const Appbar =({ search, onChange}: any) => {
-  const classes = useStyles();
-  
+const Appbar = ({ search, onChange }: any) => {
+  const classes = useStyles()
+  const history = useHistory()
+  const [cart, setCart] = useState(false)
+  const itemState = useSelector((state: AppState) => state.cartReducer.cart)
 
   return (
     <div className={classes.root}>
       <Themes>
-    
-      <AppBar position="static">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Countries-API App
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+
+        <AppBar position="static">
+          <Toolbar>
+            <Grid container direction="row" >
+              <Grid >
+                <PublicSharpIcon onClick={() => history.push('/')} />
+              </Grid>
+              <Grid item style={{ marginTop: '3px', paddingLeft: '7px' }} >
+                Countries API
+              </Grid>
+            </Grid>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+                value={search}
+                onChange={onChange}
+
+              />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-              value= {search}
-              onChange = {onChange}
-              
-            />
-          </div>
-        
-        </Toolbar>
-      </AppBar>
+            <Drawer anchor="right" open={cart} onClose={() => setCart(false)} >
+              <ItemLists />
+            </Drawer>
+
+            <Button onClick={() => setCart(true)}>
+              <Badge badgeContent={itemState.length} color='secondary' >
+                <AddShoppingCartIcon style={{ color: 'secondary', alignItems: 'center' }} />
+              </Badge>
+            </Button>
+
+          </Toolbar>
+        </AppBar>
       </Themes>
     </div>
   );

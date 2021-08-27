@@ -1,13 +1,13 @@
 
 import { createTheme, Switch, ThemeProvider } from '@material-ui/core';
-import { deepOrange, deepPurple, lightBlue, orange } from '@material-ui/core/colors';
+import { deepOrange, orange } from '@material-ui/core/colors';
 import React, { useState } from 'react'
 
 const Themes = ({children}:any) => {
     const [darkState, setDarkState] = useState(false);
     const palletType = darkState ? "dark" : "light";
-    const mainPrimaryColor = darkState ? orange[500] : lightBlue[500];
-    const mainSecondaryColor = darkState ? deepOrange[900] : deepPurple[500];
+    const mainPrimaryColor = darkState ? orange[500] : '#99CCFF';
+    const mainSecondaryColor = darkState ? deepOrange[900] : '#99CCFF';
     const darkTheme = createTheme({
         palette: {
             type: palletType,

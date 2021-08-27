@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button} from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { addItemsToCart } from '../Redux/actions';
+import { useDispatch } from 'react-redux';
 
 
 const useStyles = makeStyles((theme)=>({
@@ -21,12 +23,13 @@ const useStyles = makeStyles((theme)=>({
 
 const TablePage = ({countries}: any) => {
     const classes = useStyles();
+    const dispatch = useDispatch()
 
 
     return (
         
          <TableContainer component= {Paper}>
-            <Table className={classes.table} aria-label="simple table">
+            <Table className={classes.table} aria-label="simple table" style={{tableLayout:'fixed', whiteSpace:'nowrap'}}>
                 <TableHead>
                     <TableRow>
                         <TableCell align= "center">FLAG</TableCell>
@@ -44,11 +47,11 @@ const TablePage = ({countries}: any) => {
                                 <img src={country.flag} alt="country flag" style={{ width: "150px" }} />
                             </TableCell>
                             <TableCell align="center">
-                                <Link to = {`/${country.name}`}>{country.name}</Link>
+                                <Link to = {`/${country.name}`} style= {{textDecoration: 'none', color:'black'}}>{country.name}</Link>
                           </TableCell>
                             <TableCell align="center">{country.population}</TableCell>
                             <TableCell align="center">{country.region}</TableCell>
-                            <TableCell align="center"><Button variant="contained" color="primary">Add</Button></TableCell>
+                            <TableCell align="center"><Button variant="contained" color="primary" onClick = {()=> dispatch(addItemsToCart(country))}>Add</Button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
