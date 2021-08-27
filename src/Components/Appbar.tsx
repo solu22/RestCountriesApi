@@ -84,46 +84,49 @@ const Appbar = ({ search, onChange }: any) => {
 
         <AppBar position="static">
           <Toolbar>
-            <Grid container direction="row" >
-              <Grid >
-                <PublicSharpIcon onClick={() => history.push('/')} />
+            <Grid container direction="row">
+              <Grid item >
+                <Button onClick={() => history.push('/')}>
+                  <PublicSharpIcon />
+                </Button>
+
               </Grid>
-              <Grid item style={{ marginTop: '3px', paddingLeft: '7px' }} >
+              <Grid >
                 Countries API
               </Grid>
             </Grid>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                  value={search}
+                  onChange={onChange}
+
+                />
               </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-                value={search}
-                onChange={onChange}
+              <Drawer anchor="right" open={cart} onClose={() => setCart(false)} >
+                <ItemLists />
+              </Drawer>
 
-              />
-            </div>
-            <Drawer anchor="right" open={cart} onClose={() => setCart(false)} >
-              <ItemLists />
-            </Drawer>
-
-            <Button onClick={() => setCart(true)}>
-              <Badge badgeContent={itemState.length} color='secondary' >
-                <AddShoppingCartIcon style={{ color: 'secondary', alignItems: 'center' }} />
-              </Badge>
-            </Button>
+              <Button onClick={() => setCart(true)}>
+                <Badge badgeContent={itemState.length} color='secondary' >
+                  <AddShoppingCartIcon style={{ color: 'secondary', alignItems: 'center' }} />
+                </Badge>
+              </Button> 
 
           </Toolbar>
         </AppBar>
       </Themes>
     </div>
-  );
+      )
 }
 
 
-export default Appbar
+      export default Appbar

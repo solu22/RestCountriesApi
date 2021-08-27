@@ -38,7 +38,7 @@ const ItemLists = () => {
         <Grid container className={classes.sideBar} justifyContent='center'>
 
 
-            <Typography variant="h4" component="h4" style ={{textAlign:'center', display:'inline-block'}}>
+            <Typography variant="h4" component="h4" style={{ textAlign: 'center', display: 'inline-block' }}>
                 {itemState.length === 0 && <p> No Items in Cart </p>}
             </Typography>
             {itemState.map((item: ItemProps) => (
