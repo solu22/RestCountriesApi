@@ -20,26 +20,23 @@ import { AppState } from '../Redux/Reducers';
 
 const useStyles = makeStyles((theme) => ({
 
-    root:{
-        width:'100%',
+    root: {
+        width: '100%',
     },
     container: {
         maxHeight: 440,
-      },
-    
+    },
+
 }));
-type Columns = {
-    name:string,
-}
-const columns=[ "flag", "name", "population", "region" ]
+
+const columns = ["flag", "name", "population", "region"]
 
 
 const TablePage = ({ countries }: any) => {
     const classes = useStyles();
     const dispatch = useDispatch()
-    const itemState = useSelector((state: AppState)=> state.cartReducer.cart)
+    const itemState = useSelector((state: AppState) => state.cartReducer.cart)
 
-    /*** */
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -54,46 +51,46 @@ const TablePage = ({ countries }: any) => {
 
     return (
         <Paper className={classes.root}>
-            <TableContainer className= {classes.container}>
-                 <Table > 
+            <TableContainer className={classes.container}>
+                <Table >
                     <TableHead>
                         <TableRow>
-                            { columns.map((column)=>(
-                            <TableCell align="center" style={{minWidth: 170}} >{column.toUpperCase()}</TableCell>
+                            {columns.map((column) => (
+                                <TableCell align="center" style={{ minWidth: 170 }} >{column.toUpperCase()}</TableCell>
                             ))}
-                            
-                            
+
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {countries.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((country: any) => (
                             <TableRow key={country.name}>
 
-                                <TableCell align="center" style={{minWidth: 170}}>
+                                <TableCell align="center" style={{ minWidth: 170 }}>
                                     <img src={country.flag} alt="country flag" style={{ width: "150px" }} />
                                 </TableCell>
-                                <TableCell align="center" style={{minWidth: 170}}>
+                                <TableCell align="center" style={{ minWidth: 170 }}>
                                     <Link to={`/${country.name}`} style={{ textDecoration: 'none', color: 'black', }}>{country.name}</Link>
                                 </TableCell>
-                                <TableCell align="center" style={{minWidth: 170}}>{country.population}</TableCell>
-                                <TableCell align="center" style={{minWidth: 170}}>{country.region}</TableCell>
+                                <TableCell align="center" style={{ minWidth: 170 }}>{country.population}</TableCell>
+                                <TableCell align="center" style={{ minWidth: 170 }}>{country.region}</TableCell>
 
-                        <TableCell align="center" style={{minWidth: 170}}>
+                                <TableCell align="center" style={{ minWidth: 170 }}>
                                     {itemState.find((item: { name: any; }) => item.name === country.name) ?
-                                (
-                                    <Button variant = "contained" disabled>Add</Button>   
-                                ): 
-                                ( 
-                                
-                               <Button 
-                               variant="contained"
-                               color="primary"
-                               onClick={() => dispatch(addItemsToCart(country))}>
-                               Add
-                            </Button>
-                           
-                                )}
-                             </TableCell>
+                                        (
+                                            <Button variant="contained" disabled>Add</Button>
+                                        ) :
+                                        (
+
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={() => dispatch(addItemsToCart(country))}>
+                                                Add
+                                            </Button>
+
+                                        )}
+                                </TableCell>
 
                             </TableRow>
                         ))}
