@@ -6,10 +6,10 @@ import {
   ADD_ITEM_TO_CART,
   Country,
   REMOVE_ITEM_FROM_CART,
-} from "./../types";
-import axios from "axios";
-import { Dispatch } from "react";
-const baseURL = "https://restcountries.eu/rest/v2/all";
+} from "./../types"
+import axios from "axios"
+import { Dispatch } from "react"
+const baseURL = "https://restcountries.eu/rest/v2/all"
 export const fetchCountriesThunk =
   () => async (dispatch: Dispatch<AllActions>) => {
     try {

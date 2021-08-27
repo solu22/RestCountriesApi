@@ -1,3 +1,9 @@
+** Rest country Api with Typescript, One can search for country. Add, Remove Item to and from Cart.**
+** REDUX store for State managment**
+** Complete Responsive ** 
+** Stacks: React- Redux TypeScript, Material UI  **
+** API Used: RestCountries Api**
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
