@@ -9,9 +9,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ItemLists from './ItemLists';
 import { useSelector } from 'react-redux';
 import { AppState } from '../Redux/Reducers';
-import PublicSharpIcon from '@material-ui/icons/PublicSharp';
 import Themes from '../Theme/Theme';
-import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
 
@@ -75,7 +73,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Appbar = ({ search, onChange }: any) => {
   const classes = useStyles()
-  const history = useHistory()
   const [cart, setCart] = useState(false)
   const itemState = useSelector((state: AppState) => state.cartReducer.cart)
 
