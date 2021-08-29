@@ -29,9 +29,9 @@ const SingleCountryPage = () => {
     const history = useHistory()
     const { countryName } = useParams<Params>()
 
-    const countryData = useCountry()
+    const [countries] = useCountry()
 
-    const details = countryData.find((country: any) => country.name.toLowerCase() === countryName.toLowerCase())
+    const details = countries.find((country: any) => country.name.toLowerCase() === countryName.toLowerCase())
     return (
         <>
             {details && (

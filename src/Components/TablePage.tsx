@@ -36,20 +36,28 @@ const TablePage = ({ countries }: any) => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const itemState = useSelector((state: AppState) => state.cartReducer.cart)
+    const errorText = "No countries with such name"
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    
 
     const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage);
+        setPage(newPage)
     };
 
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
+        setPage(0)
+    }
 
     return (
+     <>
+        {!countries.length ?(
+            <div>
+            {<p>{errorText}</p>}
+            </div>
+        ):(
         <Paper className={classes.root}>
             <TableContainer className={classes.container}>
                 <Table >
@@ -107,10 +115,9 @@ const TablePage = ({ countries }: any) => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
         </Paper>
+        )}
+    </>
+    )
 
-
-
-    );
 }
-
 export default TablePage
