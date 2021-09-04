@@ -50,14 +50,13 @@ const TablePage = ({ countries }: any) => {
         setRowsPerPage(+event.target.value);
         setPage(0)
     }
-
+    
+    if(countries.length === ""){
+        return <p>{errorText}</p>
+    }
+     
     return (
      <>
-        {!countries.length ?(
-            <div>
-            {<p>{errorText}</p>}
-            </div>
-        ):(
         <Paper className={classes.root}>
             <TableContainer className={classes.container}>
                 <Table >
@@ -115,7 +114,7 @@ const TablePage = ({ countries }: any) => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
         </Paper>
-        )}
+        
     </>
     )
 
