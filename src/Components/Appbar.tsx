@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-const Appbar = ({ search, onChange }: any) => {
+const Appbar = ({ search, onChange}: any) => {
   const classes = useStyles()
   const [cart, setCart] = useState(false)
   const itemState = useSelector((state: AppState) => state.cartReducer.cart)
@@ -102,6 +102,7 @@ const Appbar = ({ search, onChange }: any) => {
                   onChange={onChange}
 
                 />
+                
               </div>
               <Drawer anchor="right" open={cart} onClose={() => setCart(false)} >
                 <ItemLists />
