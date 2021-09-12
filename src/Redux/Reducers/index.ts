@@ -1,12 +1,11 @@
 import { combineReducers } from "redux";
 import cartReducer from "./CartReducer";
-import countryReducer from './country'
-
+import countryReducer from "./country";
 
 const rootReducer = combineReducers({
- countryReducer,
- cartReducer,
-})
+  countryReducer,
+  cartReducer,
+});
 
-export type AppState = ReturnType<typeof rootReducer>
-export default rootReducer
+export type AppState = ReturnType<typeof rootReducer>;
+export default rootReducer;
