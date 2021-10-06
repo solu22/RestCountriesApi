@@ -3,8 +3,8 @@ import cartReducer from "./CartReducer";
 import countryReducer from "./country";
 
 const rootReducer = combineReducers({
-  countryReducer,
-  cartReducer,
+ countryReducer,
+ cartReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

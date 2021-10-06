@@ -4,12 +4,16 @@
 
 export type Country ={
     [index: string]:number | string | Array<string|number>|Object
-    name: string
-    flag: string
+    name:{
+        common:string
+    }
+    flags: string
     region: string
     languages: Languages[]
     population: number
     borders: string[]
+    svg: string
+
 }
 
 export type Languages ={
@@ -36,6 +40,8 @@ export type FetchCountriesFail = {
     type: typeof FETCH_COUNTRIES_FAIL,
     payload: string
 }
+
+
 //For Cart
 
 export const ADD_ITEM_TO_CART = "ADD_ITEM_TO_CART"
@@ -51,6 +57,6 @@ export type RemoveFromCartAction = {
     payload: []
 }
 
-export type AllActions = FetchAllCountriesAction | FetchCountriesSuccessAction | FetchCountriesFail | AddToCartAction | RemoveFromCartAction
+export type AllActions = FetchAllCountriesAction | FetchCountriesSuccessAction | FetchCountriesFail | AddToCartAction | RemoveFromCartAction 
 
 

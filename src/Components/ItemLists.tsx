@@ -30,8 +30,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ItemProps {
-  name: string;
-  flag: string;
+  name: {
+  common:string;
+  }
+  flags:{
+    svg:string,
+  }
 }
 
 const ItemLists = () => {
@@ -48,13 +52,13 @@ const ItemLists = () => {
       >
         {itemState.length === 0 && <p> No Items in Cart </p>}
       </Typography>
-      {itemState.map((item: ItemProps) => (
-        <Card className={classes.root} key={item.name}>
+      {itemState.map((item: ItemProps, index: React.Key | null | undefined) => (
+        <Card className={classes.root} key={index}>
           <CardContent>
-            <img src={item.flag} style={{ width: "70px" }} alt="flags" />
+            <img src={item.flags.svg} style={{ width: "70px" }} alt="flags" />
 
             <Typography variant="h5" color="textSecondary">
-              {item.name}
+              {item.name.common}
             </Typography>
             <br></br>
             <Button

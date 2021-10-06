@@ -3,11 +3,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer, { AppState } from "./Reducers/index";
 import thunk from "redux-thunk";
 
+
 const storeInitialState: AppState = {
   countryReducer: {
     countries: [],
-    isLoading: false,
-    error: "",
+     error: "",
+     isLoading: false
   },
 
   cartReducer: {

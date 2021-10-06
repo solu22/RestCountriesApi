@@ -7,15 +7,15 @@ import {
 } from "../../types";
 
 type InitState = {
-  countries: Country[];
-  isLoading: boolean;
-  error: string;
+  countries: Country[] | Country
+  isLoading: boolean
+  error: string
 };
 
 const initState: InitState = {
   countries: [],
   isLoading: false,
-  error: "",
+  error: '',
 };
 
 const countryReducer = (state = initState, action: AllActions) => {
@@ -31,7 +31,6 @@ const countryReducer = (state = initState, action: AllActions) => {
         ...state,
         isLoading: false,
         countries: action.payload,
-        error: "",
       };
 
     case FETCH_COUNTRIES_FAIL:

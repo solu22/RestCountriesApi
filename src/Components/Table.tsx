@@ -8,7 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Button, TableFooter } from "@material-ui/core";
+import { Button} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { addItemsToCart } from "../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const columns = ["flag", "name", "population", "region"];
+const columns = ["flag", "name", "population", "region","services"];
 
 const TablePage = ({ countries }: any) => {
   const classes = useStyles();
@@ -34,7 +34,7 @@ const TablePage = ({ countries }: any) => {
   const itemState = useSelector((state: AppState) => state.cartReducer.cart);
 
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -54,8 +54,8 @@ const TablePage = ({ countries }: any) => {
           <Table>
             <TableHead>
               <TableRow>
-                {columns.map((column) => (
-                  <TableCell align="center" style={{ minWidth: 170 }}>
+                {columns.map((column, index) => (
+                  <TableCell align="center" style={{ minWidth: 170 }} key= {index} >
                     {column.toUpperCase()}
                   </TableCell>
                 ))}
@@ -64,21 +64,21 @@ const TablePage = ({ countries }: any) => {
             <TableBody>
               {countries
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((country: any) => (
-                  <TableRow key={country.name}>
+                .map((country: any, index: React.Key | null | undefined) => (
+                  <TableRow key={index}>
                     <TableCell align="center" style={{ minWidth: 170 }}>
                       <img
-                        src={country.flag}
+                        src={country.flags.svg}
                         alt="country flag"
                         style={{ width: "150px" }}
                       />
                     </TableCell>
                     <TableCell align="center" style={{ minWidth: 170 }}>
                       <Link
-                        to={`/${country.name}`}
+                        to={`/${country.name.common}`}
                         style={{ textDecoration: "none", color: "black" }}
                       >
-                        {country.name}
+                        {country.name.common}
                       </Link>
                     </TableCell>
                     <TableCell align="center" style={{ minWidth: 170 }}>
@@ -90,7 +90,7 @@ const TablePage = ({ countries }: any) => {
 
                     <TableCell align="center" style={{ minWidth: 170 }}>
                       {itemState.find(
-                        (item: { name: any }) => item.name === country.name
+                        (item: { name: any }) => item.name.common === country.name.common
                       ) ? (
                         <Button variant="contained" disabled>
                           Add

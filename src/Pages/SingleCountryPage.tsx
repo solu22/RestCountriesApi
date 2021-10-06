@@ -1,3 +1,4 @@
+
 import {
   Button,
   Card,
@@ -5,12 +6,13 @@ import {
   createStyles,
   Grid,
   makeStyles,
-  Theme,
-  Typography,
+  Theme
+  
 } from "@material-ui/core";
-import React from "react";
+import Typography from "@material-ui/core/Typography";
 import { useHistory, useParams } from "react-router";
 import useCountry from "../custom-hook/useCountry";
+import { Country } from "../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,43 +38,47 @@ const SingleCountryPage = () => {
   const history = useHistory();
   const { countryName } = useParams<Params>();
 
-  const [countries] = useCountry();
+  const countryData = useCountry();
 
-  const details = countries.find(
-    (country: any) => country.name.toLowerCase() === countryName.toLowerCase()
-  );
+  const details = (countryData as Country[] | Country | any).find(
+        (c: { name: { common: string } }) => c.name.common === countryName
+     );
   return (
     <>
-      {details && (
+      {countryData.length!==0 && details && (
         <>
           <Grid container justifyContent="center">
+             
             <Card className={classes.root}>
-              <CardContent>
-                <Typography variant="h4" component="h2">
-                  {details.name}
-                </Typography>
-                <br></br>
-                <img
-                  src={details.flag}
-                  style={{ width: "150px" }}
+            <img
+                  src={details.flags.svg}
+                  style={{ width: "345px" }}
                   alt="flags"
                 />
+              <CardContent>
+                <Typography variant="h4" component="h2">
+                  {details.name.common}
+                </Typography>
+                <br></br>
+                
 
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Other Name: {details.nativeName}
+                <Typography variant="body2" color="textSecondary" component="span">
+                  Other Name: {details.name.common}
+                </Typography>
+               <Typography>
+               Currencies: {Object.keys(details.currencies).join(',')}
+                 </Typography> 
+                <br></br>
+                <Typography variant="body2" color="textSecondary" component="span">
+                Borders: {details.borders && details.borders.join(',')}
+                {!details.borders && <p>No borders found for this country</p>}
                 </Typography>
                 <br></br>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Borders: {details.borders.join(",")}
+                <Typography variant="body2" color="textSecondary" component="span">
+                Languages: {Object.values(details.languages).join(',')}
                 </Typography>
-                <br></br>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Languages:{" "}
-                  {details.languages
-                    .map((lang: { name: string }) => lang.name)
-                    .join(",")}
-                </Typography>
-                <br></br>
+                <p></p>
+                <p></p>
                 <Button
                   variant="contained"
                   onClick={() => history.push("/")}

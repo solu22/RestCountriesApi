@@ -5,13 +5,15 @@ import { AppState } from "../Redux/Reducers";
 
 const useCountry = () => {
   const dispatch = useDispatch();
-  const { countries, isLoading, error } = useSelector(
-    (state: AppState) => state.countryReducer
+  const countryData = useSelector(
+    (state: AppState) => state.countryReducer.countries
   );
   useEffect(() => {
     dispatch(fetchCountriesThunk());
   }, [dispatch]);
-  return [countries, isLoading, error] as const;
-};
+  return countryData
+
+}
 
 export default useCountry;
+

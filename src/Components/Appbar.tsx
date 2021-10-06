@@ -112,11 +112,11 @@ const Appbar = ({ search, onChange }: any) => {
                 onChange={onChange}
               />
             </div>
-            <Drawer anchor="right" open={cart} onClose={() => setCart(false)}>
+            <Drawer anchor="right" open={cart} onClose={() => setCart(!cart)}>
               <ItemLists />
             </Drawer>
 
-            <Button onClick={() => setCart(true)}>
+            <Button onClick={() => setCart(!cart)}>
               <Badge badgeContent={itemState.length} color="secondary">
                 <AddShoppingCartIcon
                   style={{ color: "secondary", alignItems: "center" }}
