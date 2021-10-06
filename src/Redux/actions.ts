@@ -27,10 +27,7 @@ export const fetchCountriesThunk =
         payload: data,
       });
     } catch (error) {
-      dispatch({
-        type: FETCH_COUNTRIES_FAIL,
-        payload: error.message,
-      });
+      console.log(error)
     }
   };
 
